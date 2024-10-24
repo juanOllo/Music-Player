@@ -45,10 +45,17 @@ const allSongs = [
   },
   {
     id: 5,
-    title: "08 - Balads of Sad Tony (youtube version)",
+    title: "07 - Kung Fu",
     artist: "Davus",
-    duration: "2:44",
-    src: "./songs/08- davus - Balads of Sad Tony (youtube version).wav",
+    duration: "1:47",
+    src: "./songs/07- davus - kung fu.wav",
+  },
+  {
+    id: 6,
+    title: "08 - Balads of Sad Tony",
+    artist: "Davus",
+    duration: "3:34",
+    src: "./songs/08- davus - Balads of Sad Tony.wav",
   },
   
 ];
@@ -223,7 +230,7 @@ nextButton.addEventListener("click", playNextSong);
 
 previousButton.addEventListener("click", playPreviousSong);
 
-shuffleButton.addEventListener("click", shuffle);
+// shuffleButton.addEventListener("click", shuffle);
 
 audio.addEventListener("ended", () => {
   const currentSongIndex = getCurrentSongIndex();
