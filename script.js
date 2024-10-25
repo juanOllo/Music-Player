@@ -10,8 +10,8 @@ const vinyl = document.getElementById("vinyl-img");
 const allSongs = [
   {
     id: 0,
-    title: "01 - Ñeris Night feat. Santi Sanz",
-    artist: "Davus",
+    title: "01 - Ñeris Night",
+    artist: "Davus ft. Santi Sanz",
     duration: "3:30",
     src: "./songs/01- davus - Ñeris Night feat. Santi Sanz.opus",
   },
@@ -24,8 +24,8 @@ const allSongs = [
   },
   {
     id: 2,
-    title: "03 - Yas ft Christian de Lugano",
-    artist: "Davus",
+    title: "03 - Yas",
+    artist: "Davus ft. Christian de Lugano",
     duration: "4:23",
     src: "./songs/03- davus - yas ft Christian de lugano.opus",
   },

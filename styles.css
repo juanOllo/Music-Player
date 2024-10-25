@@ -13,7 +13,9 @@
 
   /* font-families */
   --font-headline: "Roboto Mono", monospace;
-  --font-family: "Lato", sans-serif;
+  /* --font-family: "Lato", sans-serif; */
+  --font-family: "Dancing Script", cursive;
+  /* --font-family: "Playwrite GB S", serif; */
 
   /* COLORES MASOMENO' */
   --pink: #F072F2;
@@ -121,12 +123,23 @@ ul {
   justify-content: space-between;
 }
 
+#header {
+  height: 13rem;
+  /* background-color: red; */
+}
+
 #vinyl-img {
   height:12rem;
   width: 12rem;
   background: url("./vinyl.png") no-repeat center;
   background-size: 11rem;
   margin: 0 auto;
+}
+
+#header img{
+  position: relative;
+  /* left: -3rem; */
+  top: -12rem;
 }
 
 /* #vinyl-img:hover {
@@ -295,16 +308,22 @@ border-bottom: 1px solid var(--background-color);
   justify-content: space-around;
   column-gap: 7px;
   padding: 5px 0;
-  font-family: var(--font-family);
   color: black;
   max-width: 85vw;
   overflow: hidden;
+
+  font-family: var(--font-family);
+}
+
+.playlist-song-info > .playlist-song-title {
+  font-weight: bold;
 }
 
 [aria-current="true"] {
   /* background-color: var(--background-color); */
   background-color: var(--lightbrown);
   border-radius: 1rem;
+
 }
 
 [aria-current="true"] p {
@@ -319,11 +338,19 @@ border-bottom: 1px solid var(--background-color);
 #player-song-artist {
   color: var(--pink);
   /* font-size: 0.75rem; */
+  font-weight: bold;
+  font-family: "Dancing Script", cursive;
 }
 
 #player-song-title {
   color: var(--lightblue);
   font-size: 1.125rem;
+  /* font-family: "Playwrite GB S", cursive;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal; */
+  font-family: "Dancing Script", cursive;
+  font-weight: bold;
 }
 
 .playlist-song-title {
