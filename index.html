@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>
+      Davus - Ni Muy Bueno Ni Muy Malo, Masomeno'
+    </title>
+    <link rel="shortcut icon" href="./610 icon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Dancing+Script:wght@400..700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div id="bottom-bottom"></div>
+    <img id="bottom-album-art"
+      src=".\Tapa - Davus Ni Muy Bueno Ni Muy Malo, Masomeno'.jpg"
+      alt="song cover art"
+    />
+    <div class="container">
+      <div class="player">
+        <div id="header">
+          <div id="vinyl-img"></div>
+          <img src="./610.png" alt="610">
+        </div>
+        <span>
+          <p id="player-song-title"></p>
+          <p id="player-song-artist"></p>
+        </span>
+      </div>
+      <div class="playlist">
+        <ul id="playlist-songs"></ul>
+      </div>
+      <div class="player-buttons">
+        <button id="previous" class="previous" aria-label="Previous">
+          <svg
+            width="24"
+            height="19"
+            viewBox="0 0 24 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          ><path d="M23.2248 0L7.03964 9.5L23.2248 19L23.2248 0Z" /><rect
+              width="4.63633"
+              height="18.5453"
+              transform="matrix(-1 0 0 1 4.63633 0)"/></svg>
+        </button>
+        <button id="play" class="play" aria-label="Play">
+          <svg
+            width="17"
+            height="19"
+            viewBox="0 0 17 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          > <path d="M0 0L16.1852 9.5L1.88952e-07 19L0 0Z" /></svg>
+        </button>
+        <button id="pause" class="pause" aria-label="Pause">
+          <svg
+            width="17"
+            height="19"
+            viewBox="0 0 17 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          ><path d="M0 6.54013e-07H4.75V19H0V6.54013e-07Z" /> <path d="M11.4 0H16.15V19H11.4V0Z" /></svg>
+        </button>
+        <button id="next" class="next" aria-label="Next">
+          <svg
+            width="24"
+            height="19"
+            viewBox="0 0 24 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          ><path d="M0 0L16.1852 9.5L1.88952e-07 19L0 0Z" /> <rect x="18.5885" width="4.63633" height="18.5453" /></svg>
+        </button>
+      </div>
+      <div id="juanollo">By: <a href="https://github.com/juanOllo">juanOllo</a></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
