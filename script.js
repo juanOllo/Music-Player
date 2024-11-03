@@ -82,6 +82,7 @@ const playSong = (id) => {
   }
   userData.currentSong = song;
   playButton.classList.add("playing");
+  pauseButton.classList.remove("playing");
 
   highlightCurrentSong();
   setPlayerDisplay();
@@ -95,6 +96,7 @@ const pauseSong = () => {
   vinyl.style.animation = "none";
   
   playButton.classList.remove("playing");
+  pauseButton.classList.add("playing");
   audio.pause();
 };
 
@@ -110,8 +112,12 @@ const playNextSong = () => {
 };
 
 const playPreviousSong = () => {
+  // console.log("actual time: ", audio.currentTime);
+
    if (userData?.currentSong === null) return;
-   else {
+   else if(audio.currentTime > 5) {
+    audio.currentTime = 0;
+   } else {
     const currentSongIndex = getCurrentSongIndex();
     const previousSong = userData?.songs[currentSongIndex - 1];
 
@@ -124,46 +130,60 @@ const shuffle = () => {
   userData.currentSong = null;
   userData.songCurrentTime = 0;
 
-  renderSongs(userData?.songs);
-  pauseSong();
-  setPlayerDisplay();
-  setPlayButtonAccessibleText();
-};
+  anim(playlistSongs, "shuffle-playlist-anim 0.5s ease-in-out");
 
-const deleteSong = (id) => {
-  if (userData?.currentSong?.id === id) {
-    userData.currentSong = null;
-    userData.songCurrentTime = 0;
+  setTimeout(() => {
 
+    renderSongs(userData?.songs);
     pauseSong();
     setPlayerDisplay();
-  }
-
-  userData.songs = userData?.songs.filter((song) => song.id !== id);
-  renderSongs(userData?.songs); 
-  highlightCurrentSong(); 
-  setPlayButtonAccessibleText(); 
-
-  if (userData?.songs.length === 0) {
-    const resetButton = document.createElement("button");
-    const resetText = document.createTextNode("Reset Playlist");
-
-    resetButton.id = "reset";
-    resetButton.ariaLabel = "Reset playlist";
-    resetButton.appendChild(resetText);
-    playlistSongs.appendChild(resetButton);
-
-    resetButton.addEventListener("click", () => {
-      userData.songs = [...allSongs];
-
-      renderSongs(sortSongs()); 
-      setPlayButtonAccessibleText();
-      resetButton.remove();
-    });
-
-  }
-
+    setPlayButtonAccessibleText();
+  }, 250)
 };
+
+
+//aplica animaciones
+const anim = (el, str) => {
+  el.style.animation = "none";
+  el.offsetHeight;
+  el.style.animation = str;
+}
+
+
+// const deleteSong = (id) => {
+//   if (userData?.currentSong?.id === id) {
+//     userData.currentSong = null;
+//     userData.songCurrentTime = 0;
+
+//     pauseSong();
+//     setPlayerDisplay();
+//   }
+
+//   userData.songs = userData?.songs.filter((song) => song.id !== id);
+//   renderSongs(userData?.songs); 
+//   highlightCurrentSong(); 
+//   setPlayButtonAccessibleText(); 
+
+//   if (userData?.songs.length === 0) {
+//     const resetButton = document.createElement("button");
+//     const resetText = document.createTextNode("Reset Playlist");
+
+//     resetButton.id = "reset";
+//     resetButton.ariaLabel = "Reset playlist";
+//     resetButton.appendChild(resetText);
+//     playlistSongs.appendChild(resetButton);
+
+//     resetButton.addEventListener("click", () => {
+//       userData.songs = [...allSongs];
+
+//       renderSongs(sortSongs()); 
+//       setPlayButtonAccessibleText();
+//       resetButton.remove();
+//     });
+
+//   }
+
+// };
 
 const setPlayerDisplay = () => {
   const playingSong = document.getElementById("player-song-title");
@@ -230,7 +250,7 @@ nextButton.addEventListener("click", playNextSong);
 
 previousButton.addEventListener("click", playPreviousSong);
 
-// shuffleButton.addEventListener("click", shuffle);
+shuffleButton.addEventListener("click", shuffle);
 
 audio.addEventListener("ended", () => {
   const currentSongIndex = getCurrentSongIndex();
@@ -266,3 +286,11 @@ const sortSongs = () => {
 
 renderSongs(sortSongs());
 setPlayButtonAccessibleText();
+
+
+const playerBtns = document.querySelector(".player-buttons");
+// console.log("soada", playerBtns);
+
+function clickAnim() {
+  anim(playerBtns, "player-buttons-anim 0.2s ease-in-out");
+}
