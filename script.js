@@ -115,7 +115,7 @@ const playPreviousSong = () => {
   // console.log("actual time: ", audio.currentTime);
 
    if (userData?.currentSong === null) return;
-   else if(audio.currentTime > 5) {
+   else if(audio.currentTime > 3) {
     audio.currentTime = 0;
    } else {
     const currentSongIndex = getCurrentSongIndex();
@@ -130,7 +130,7 @@ const shuffle = () => {
   userData.currentSong = null;
   userData.songCurrentTime = 0;
 
-  anim(playlistSongs, "shuffle-playlist-anim 0.5s ease-in-out");
+  anim(playlistSongs, "shuffle-playlist-anim 0.4s ease-in-out");
 
   setTimeout(() => {
 

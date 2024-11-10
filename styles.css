@@ -1,12 +1,4 @@
 :root {
-  /* colors */
-  --primary-color: #dfdfe2;
-  --secondary-color: #ffffff;
-  --app-background-color: #4d4d62;
-  --background-color: #1b1b32;
-  --foreground-color: #3b3b4f;
-  --highlight-color: green;
-
   /* font sizes */
   --root-font-size: 16px;
   font-size: var(--root-font-size);
@@ -141,8 +133,24 @@ ul {
   height: 4rem;
   border-radius: 3rem;
   max-width: 30rem;
-
+  
   /* opacity: 0.7; */
+}
+
+button {
+  background: transparent;
+  border: none;
+  /* color: var(--pink); */
+  /* cursor: pointer; */
+  /* font-size: var(--root-font-size); */
+  /* text-align: center; */
+}
+
+.player-buttons > button {
+  margin: auto;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 2rem;
 }
 
 /* .player-buttons:hover {
@@ -150,39 +158,18 @@ ul {
 } */
 
 @keyframes player-buttons-anim {
-  40%{
-    scale: 0.95;
+  0%{
+    scale: 0.9;
     opacity: 0.7;
+    /* background-color: white; */
   }
-}
-
-button {
-  background: transparent;
-  border: none;
-  color: var(--primary-color);
-  /* cursor: pointer; */
-  font-size: var(--root-font-size);
-  text-align: center;
-  margin: auto;
-}
-
-.player-buttons > button {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 2rem;
 }
 
 /* .player-buttons > button:focus {
   animation: click-anim 0.2s ease-in-out;
 }
 
-@keyframes click-anim {
-  50%{
-  background-color: rgba(0, 0, 0, 0.5);
-  }
-} */
-
-
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* Playlist */
 
 
@@ -192,11 +179,13 @@ button {
 }
 
 #playlist-songs::-webkit-scrollbar-track {
-  background: var(--background-color);
+    /* temporal */
+  background: var(--pink);
 }
 
 #playlist-songs::-webkit-scrollbar-thumb {
-  background: var(--secondary-color);
+    /* temporal */
+  background: var(--pink);
 }
 
 
@@ -240,22 +229,14 @@ button {
     height: 100%;
   }
   50%{
-    scrollbar-color: transparent transparent;
     height: 0;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   100%{
     scrollbar-color: transparent transparent;
     height: 100%;
-    /* transform: rotate(360deg); */
   }
 }
-
-/* @keyframes shuffle-playlist-anim {
-  50%{
-    color: transparent;
-  }
-} */
 
 .playlist-song {
   display: flex;
@@ -292,7 +273,8 @@ button {
 }
 
 [aria-current="true"] p {
-  color: var(--highlight-color);
+    /* temporal */
+  color: var(--pink);
 }
 
 #player-song-title,
@@ -338,7 +320,8 @@ button {
 
 .playlist-song-delete,
 .playlist-song-delete {
-  fill: var(--foreground-color);
+    /* temporal */
+  fill: var(--pink);
 }
 
 .playlist-song-delete:hover circle,
