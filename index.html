@@ -44,9 +44,15 @@
           <p id="player-song-artist"></p>
         </span>
       </div>
+
       <div class="playlist">
         <ul id="playlist-songs"></ul>
       </div>
+
+      <div>
+        <input type="range" id="progress-bar" value="0" min="0">
+      </div>
+
       <div class="player-buttons">
         <button onclick="clickAnim()" id="shuffle" class="shuffle" aria-label="Shuffle">
           <svg
@@ -102,7 +108,9 @@
         </button>
         
       </div>
+
       <div id="juanollo">By: <a href="https://github.com/juanOllo">juanOllo</a></div>
+
     </div>
     <script src="script.js"></script>
   </body>

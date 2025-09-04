@@ -4,6 +4,7 @@ const pauseButton = document.getElementById("pause");
 const nextButton = document.getElementById("next");
 const previousButton = document.getElementById("previous");
 const shuffleButton = document.getElementById("shuffle");
+const progressBar = document.getElementById("progress-bar");
 
 const vinyl = document.getElementById("vinyl-img");
 
@@ -77,8 +78,10 @@ const playSong = (id) => {
 
   if (userData?.currentSong === null || userData?.currentSong.id !== song.id) {
     audio.currentTime = 0;
+    progressBar.value = 0;
   } else {
-    audio.currentTime = userData?.songCurrentTime;
+    // audio.currentTime = userData?.songCurrentTime;
+    audio.currentTime = progressBar.value;
   }
   userData.currentSong = song;
   playButton.classList.add("playing");
@@ -125,20 +128,37 @@ const playPreviousSong = () => {
    }
 };
 
+audio.addEventListener("timeupdate", () => {
+  progressBar.max = audio.duration;
+  progressBar.value = audio.currentTime;
+});
+
+progressBar.addEventListener('input', () => {
+  audio.currentTime = progressBar.value;
+});
+
 const shuffle = () => {
-  userData?.songs.sort(() => Math.random() - 0.5);
-  userData.currentSong = null;
-  userData.songCurrentTime = 0;
+  if (shuffleButton.classList.contains("shuffled")) {
+    userData.songs = [...allSongs];
+    shuffleButton.classList.remove("shuffled");
+  } else {
 
-  anim(playlistSongs, "shuffle-playlist-anim 0.4s ease-in-out");
+    if (userData.currentSong===null) {
+      userData?.songs.sort(() => Math.random() - 0.5);
+    } else {
+      userData.songs = userData?.songs.filter(s => s.id !== userData?.currentSong.id);
+      userData?.songs.sort(() => Math.random() - 0.5);
+      userData.songs.unshift(userData?.currentSong);
+    }
 
-  setTimeout(() => {
+    shuffleButton.classList.add("shuffled");
+  }
 
-    renderSongs(userData?.songs);
-    pauseSong();
-    setPlayerDisplay();
-    setPlayButtonAccessibleText();
-  }, 250)
+  renderSongs(userData?.songs);
+  // pauseSong();
+  // setPlayerDisplay();
+  setPlayButtonAccessibleText();
+  highlightCurrentSong();
 };
 
 
@@ -211,6 +231,10 @@ const highlightCurrentSong = () => {
 const renderSongs = (array) => {
   const songsHTML = array
     .map((song)=> {
+      // if (song.id) {
+        
+      // }
+
       return `
       <li id="song-${song.id}" class="playlist-song">
         <button class="playlist-song-info" onclick="playSong(${song.id})">
@@ -261,10 +285,10 @@ audio.addEventListener("ended", () => {
     } else {
       userData.currentSong = null;
       userData.songCurrentTime = 0;  
-pauseSong()
-setPlayerDisplay()
-highlightCurrentSong()
-setPlayButtonAccessibleText()
+      pauseSong()
+      setPlayerDisplay()
+      highlightCurrentSong()
+      setPlayButtonAccessibleText()
     }
 });
 
@@ -292,5 +316,5 @@ const playerBtns = document.querySelector(".player-buttons");
 // console.log("soada", playerBtns);
 
 function clickAnim() {
-  anim(playerBtns, "player-buttons-anim 0.2s ease-in-out");
+  anim(playerBtns, "player-buttons-anim 0.4s ease-in-out");
 }
