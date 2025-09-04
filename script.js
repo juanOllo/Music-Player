@@ -5,6 +5,7 @@ const nextButton = document.getElementById("next");
 const previousButton = document.getElementById("previous");
 const shuffleButton = document.getElementById("shuffle");
 const progressBar = document.getElementById("progress-bar");
+// const volumeBar = document.getElementById("volume-bar");
 
 const vinyl = document.getElementById("vinyl-img");
 
@@ -137,6 +138,10 @@ progressBar.addEventListener('input', () => {
   audio.currentTime = progressBar.value;
 });
 
+// volumeBar.addEventListener('input', () => {
+//   audio.volume = volumeBar.value / 100;
+// })
+
 const shuffle = () => {
   if (shuffleButton.classList.contains("shuffled")) {
     userData.songs = [...allSongs];
@@ -154,7 +159,7 @@ const shuffle = () => {
     shuffleButton.classList.add("shuffled");
   }
 
-  renderSongs(userData?.songs);
+  // renderSongs(userData?.songs);
   // pauseSong();
   // setPlayerDisplay();
   setPlayButtonAccessibleText();

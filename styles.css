@@ -207,7 +207,7 @@ button {
   max-width: 90vw;
 
   background-color: rgba(217, 192, 163, 50%);
-  border-radius: 1rem;
+  border-radius: 0.7rem;
 
   display: flex;
   flex-direction: column;
@@ -223,7 +223,7 @@ button {
   display: flex;
   flex-direction: column;
   /* row-gap: 8px; */
-  padding: 8px 9px;
+  padding: 5px;
   visibility: visible;
   justify-content: start;
   list-style: none;
@@ -240,7 +240,8 @@ button {
   max-height: 4rem;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .playlist-song-info {
@@ -264,8 +265,6 @@ button {
 
 [aria-current="true"] {
   background-color: var(--lightbrown);
-  border-radius: 1rem;
-
 }
 
 [aria-current="true"] p {
@@ -330,6 +329,14 @@ button {
   height: 0.3rem;
   /* background: #ccc; */
   accent-color: #ff4081;
+  margin: 0;
+}
+
+#volume-bar{
+  width: 10rem;
+  height: 0.3rem;
+  /* background: #ccc; */
+  accent-color: var(--lightblue);
   margin: 0;
 }
 
