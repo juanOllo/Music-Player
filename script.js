@@ -1,3 +1,4 @@
+const playerBtns = document.querySelector(".player-buttons");
 const playlistSongs = document.getElementById("playlist-songs");
 const playButton = document.getElementById("play");
 const pauseButton = document.getElementById("pause");
@@ -5,7 +6,9 @@ const nextButton = document.getElementById("next");
 const previousButton = document.getElementById("previous");
 const shuffleButton = document.getElementById("shuffle");
 const progressBar = document.getElementById("progress-bar");
-// const volumeBar = document.getElementById("volume-bar");
+const volumeBar = document.getElementById("volume-bar");
+const volumeBarDiv = document.getElementById("volume-bar-div");
+const volumeBarBtn = document.getElementById("volume");
 
 const vinyl = document.getElementById("vinyl-img");
 
@@ -63,13 +66,14 @@ const allSongs = [
 ];
 
 const audio = new Audio();
+audio.volume = 0.75;
 let userData = {
   songs: [...allSongs],
   currentSong: null,
   songCurrentTime: 0,
 };
 
-const playSong = (id) => {
+const playSong = (id, event = null) => {
 
   vinyl.style.animation = "vinyl-anim 4s linear 0s infinite";
 
@@ -87,6 +91,15 @@ const playSong = (id) => {
   userData.currentSong = song;
   playButton.classList.add("playing");
   pauseButton.classList.remove("playing");
+
+  // Si clickeas una cancion de la playlist con el shuffle activado, se vuelven a mezclar
+  //  Event no es null solo cuando clickeas una cancion de la playlist
+  if (shuffleButton.classList.contains("shuffled") && event !== null) {
+    userData.songs = userData?.songs.filter(s => s.id !== userData?.currentSong.id);
+    userData?.songs.sort(() => Math.random() - 0.5);
+    userData.songs.unshift(userData?.currentSong);
+  }
+  // console.log("userData.songs", userData.songs.reduce((acc, e) => acc + e.id.toString() + ", ", ""));
 
   highlightCurrentSong();
   setPlayerDisplay();
@@ -138,9 +151,9 @@ progressBar.addEventListener('input', () => {
   audio.currentTime = progressBar.value;
 });
 
-// volumeBar.addEventListener('input', () => {
-//   audio.volume = volumeBar.value / 100;
-// })
+volumeBar.addEventListener('input', () => {
+  audio.volume = volumeBar.value / 100;
+})
 
 const shuffle = () => {
   if (shuffleButton.classList.contains("shuffled")) {
@@ -165,6 +178,34 @@ const shuffle = () => {
   setPlayButtonAccessibleText();
   highlightCurrentSong();
 };
+
+volumeBarBtn.addEventListener("click", () => {
+  if (volumeBarDiv.classList.contains("displayed")) {
+    volumeBarDiv.style.display = "none";
+    volumeBarDiv.classList.remove("displayed");
+
+    volumeBarBtn.classList.remove("shuffled");
+
+    for(let btn of playerBtns.children) {
+      if (btn.id !== "volume" && btn.id !== "volume-bar-div") {
+        btn.classList.remove("hiden");
+      }
+    }
+  } else {
+    volumeBarDiv.style.display = "flex";
+    volumeBarDiv.classList.add("displayed");
+
+    // Le agrego la clase shuffled solo para que el boton quede rosa
+    volumeBarBtn.classList.add("shuffled");
+
+    // Oculto los demas botones del player
+    for(let btn of playerBtns.children) {
+      if (btn.id !== "volume" && btn.id !== "volume-bar-div") {
+        btn.classList.add("hiden");
+      }
+    }
+  }
+})
 
 
 //aplica animaciones
@@ -242,7 +283,7 @@ const renderSongs = (array) => {
 
       return `
       <li id="song-${song.id}" class="playlist-song">
-        <button class="playlist-song-info" onclick="playSong(${song.id})">
+        <button class="playlist-song-info" onclick="playSong(${song.id}, event)">
           <span class="playlist-song-title">${song.title}</span>
           <span class="playlist-song-duration">${song.duration}</span>
         </button>
@@ -315,10 +356,6 @@ const sortSongs = () => {
 
 renderSongs(sortSongs());
 setPlayButtonAccessibleText();
-
-
-const playerBtns = document.querySelector(".player-buttons");
-// console.log("soada", playerBtns);
 
 function clickAnim() {
   anim(playerBtns, "player-buttons-anim 0.4s ease-in-out");

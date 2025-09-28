@@ -119,7 +119,7 @@ ul {
   background-color: #f3c7d4;
 
   width: 80%;
-  height: 4rem;
+  height: 3.5rem;
   border-radius: 3rem;
   max-width: 30rem;
   padding: 0 0.3rem;
@@ -127,12 +127,14 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* flex-wrap: wrap; */
 }
 
 button {
   background: transparent;
   border: none;
   margin: 0;
+  max-width: 3.5rem;
   /* color: var(--pink); */
   /* cursor: pointer; */
   /* font-size: var(--root-font-size); */
@@ -147,8 +149,8 @@ button {
 
 .player-buttons > button {
   /* margin: auto; */
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 2rem;
 }
 
@@ -304,6 +306,8 @@ button {
 .playlist-song-duration {
   font-size: 0.725rem;
   font-family: var(--font-headline);
+  /* font-weight: 100; */
+  opacity: 70%;
   width: 30px;
 }
 
@@ -332,9 +336,44 @@ button {
   margin: 0;
 }
 
+/* #volume{
+  background-color: green;
+} */
+
+
+#volume *{
+  margin: 0.4rem 0 0 0.3rem;
+  /* background-color: red; */
+}
+
+#volume-bar-div{
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-color: #f3c7d4;
+  /* height: 0.5rem; */
+  /* width: 0; */
+  max-width: 70%;
+  height: 0;
+  overflow: visible;
+  /* max-width: 20rem; */
+  /* padding: 1rem; */
+  margin: 0 auto;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  /* bottom: 18svh; */
+  /* left: calc(50svw + 13rem); */
+  /* z-index: 2; */
+  /* transform: rotate(-90deg); */
+  /* bottom: 150%; */
+  /* transform: translate(-50%, 0); */
+}
+
 #volume-bar{
-  width: 10rem;
-  height: 0.3rem;
+  width: 20rem;
+  height: 1.3rem;
   /* background: #ccc; */
   accent-color: var(--lightblue);
   margin: 0;
@@ -352,7 +391,7 @@ button {
 
 @media only screen and (min-width: 100vh) {
   body {
-    scale: 0.9;
+    scale: 0.95;
     margin: auto;
   }
   #juanollo {
@@ -361,8 +400,38 @@ button {
   /* .playlist-song-title {
     cursor: pointer;
   } */
+  .playlist-song-info:hover{
+    cursor: pointer;
+    scale: 1.03;
+  }
+  button:hover,
+  #progress-bar:hover,
+  #volume-bar:hover {
+    cursor: pointer;
+  }
+  /* #player-song-title,
+  #player-song-artist {
+    font-size: 1.3rem;
+  }
+  .playlist-song-title {
+    font-size: 1rem;
+  } */
+  .player-buttons {
+    scale: 0.8;
+    /* height: 1rem;
+    background-color: transparent; */
+    /* height: 3.5rem; */
+    margin: -1rem 0;
+  }
+  .player-buttons *{
+    background-color: #f3c7d4;
+  }
 }
 
 .playing {
+  display: none;
+}
+
+.hiden {
   display: none;
 }
