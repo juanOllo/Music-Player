@@ -66,7 +66,7 @@ const allSongs = [
 ];
 
 const audio = new Audio();
-audio.volume = 0.75;
+// audio.volume = 0.75;
 let userData = {
   songs: [...allSongs],
   currentSong: null,
@@ -360,3 +360,28 @@ setPlayButtonAccessibleText();
 function clickAnim() {
   anim(playerBtns, "player-buttons-anim 0.4s ease-in-out");
 }
+
+
+
+const body = document.getElementsByTagName("body")[0];
+// Si clickeas cualquier elemento que no contenga la clase "volume" o "volume-click" y
+//  el div del volumen esta visible entonces lo oculta.
+body.addEventListener("click", (e) => {
+  if (e.target.classList.contains("volume") || e.target.classList.contains("volume-click")) {
+    return;
+  }
+
+  // (Codigo copiado del eventListener de volumeBarDiv)
+  if (volumeBarDiv.classList.contains("displayed")) {
+    volumeBarDiv.style.display = "none";
+    volumeBarDiv.classList.remove("displayed");
+
+    volumeBarBtn.classList.remove("shuffled");
+
+    for(let btn of playerBtns.children) {
+      if (btn.id !== "volume" && btn.id !== "volume-bar-div") {
+        btn.classList.remove("hiden");
+      }
+    }
+  }
+})
